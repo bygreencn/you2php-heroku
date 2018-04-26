@@ -53,8 +53,8 @@ function get_related_video($vid,$apikey){
 
 
 //获取用户频道视频
-function get_channel_video($cid,$pageToken='',$apikey,$regionCode='VN'){
-   $apilink='https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&maxResults=50&type=video&regionCode='.$regionCode.'&hl=zh-CN&channelId='.$cid.'&key='.$apikey.'&pageToken='.$pageToken;
+function get_channel_video($cid,$pageToken='',$apikey,$regionCode='VN',$maxCount=50){
+   $apilink='https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&maxResults='.$maxCount.'&type=video&regionCode='.$regionCode.'&hl=zh-CN&channelId='.$cid.'&key='.$apikey.'&pageToken='.$pageToken;
    return json_decode(get_data($apilink),true);
 }
 
@@ -67,36 +67,18 @@ function videoCategories($apikey,$regionCode='HK'){
 
 function categorieslist($id){
    $data=array(
-    '1' => '电影和动画',
-    '2' => '汽车',
     '10' => '音乐',
-    '15' => '宠物和动物',
     '17' => '体育',
-    '18' => '短片',
     '19' => '旅游和活动',
-    '20' => '游戏',
-    '21' => '视频博客',
-    '22' => '人物和博客',
-    '23' => '喜剧',
-    '24' => '娱乐',
     '25' => '新闻和政治',
     '26' => 'DIY 和生活百科',
     '27' => '教育',
     '28' => '科学和技术',
     '30' => '电影',
-    '31' => '动漫/动画',
-    '32' => '动作/冒险',
     '33' => '经典',
     '34' => '喜剧',
     '35' => '纪录片',
-    '36' => '剧情片',
-    '37' => '家庭片',
-    '38' => '外国',
-    '39' => '恐怖片',
     '40' => '科幻/幻想',
-    '41' => '惊悚片',
-    '42' => '短片',
-    '43' => '节目',
     '44' => '预告片'
        );
      if($id=='all'){
@@ -113,8 +95,8 @@ function Categories($id,$apikey,$pageToken='',$order='relevance',$regionCode='VN
 
 
 //获取搜索数据
-function get_search_video($query,$apikey,$pageToken='',$type='video',$order='relevance',$regionCode='VN'){
-   $apilink='https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=48&order='.$order.'&type='.$type.'&q='.$query.'&key='.$apikey.'&pageToken='.$pageToken;
+function get_search_video($query,$apikey,$pageToken='',$type='video',$order='relevance',$regionCode='VN',$maxCount=48){
+   $apilink='https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults='.$maxCount.'&order='.$order.'&type='.$type.'&q='.$query.'&key='.$apikey.'&pageToken='.$pageToken;
    return json_decode(get_data($apilink),true);
 }
 
@@ -225,6 +207,27 @@ function random_recommend(){
     array_shift($ldata);
     return $ldata;
 }
+
+
+function fav_channel(){
+	$cids = array('UCtAIPjABiQD3qjlEl1T5VpA','UCdbvc-yJ4JQjNGTgFiJIZNA');
+	$cl = array();
+	foreach ($cids as $cid) {
+		$vl = array();
+		$vds = get_channel_video($cid,$pageToken='',APIKEY,GJ_CODE,$maxCount=6);	
+		foreach ($vds as $vd) {
+			$vid = $vd['id']['videoId'];
+			$vt = $vd["snippet"]["title"];
+			$video = array('id' => $vid, 'title' => $vt);
+			array_push($vl, $video);
+		}
+		$cd = array( 't' => '', 'dat' => $vl);		
+		array_push($vl, $cd);
+	}
+	return $cl;
+}
+
+
 //视频下载
 function video_down($v,$name){
 $yt = new YouTubeDownloader();
@@ -247,6 +250,7 @@ echo ' <tbody>
     } 
     echo '</table>';
 }
+
 
 //判断高清微缩图是否存在
 function get_thumbnail_code($vid){
@@ -414,7 +418,7 @@ function shareit($id,$title='免翻墙Youtube镜像'){
     $title=str_replace('&','||',$title);
     $title=str_replace('"',' ',$title);
      $title=str_replace("'",' ',$title);
-    $des='【免翻墙Youtube镜像】我正在通过这个网站看《'.$title.'》不用翻墙看全球视频，手机电脑都能看，快来试试吧！';
+   $des='【免翻墙Youtube镜像】我正在通过这个网站看《'.$title.'》不用翻墙看全球视频，手机电脑都能看，快来试试吧！';
     return "<div id='share'>
   <a class='icoqz' href='https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=".$url."&desc=".$des."&title=".$titlel."
 &pics=".$pic."' target='blank' title='分享到QQ空间'><i class='iconfont icon-qqkongjian icofontsize'></i></a>

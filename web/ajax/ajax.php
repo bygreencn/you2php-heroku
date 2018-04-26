@@ -48,6 +48,12 @@ ini_set('error_log', dirname(__FILE__) . '/error_log.txt');
             }
             echo'</div>';
     		break;
+
+        case 'recommenddata':
+    $random=random_recommend();
+	echo json_encode($random);
+	break;
+
         case 'recommend':
     $random=random_recommend();
     foreach($random as $v) {
@@ -90,8 +96,9 @@ ini_set('error_log', dirname(__FILE__) . '/error_log.txt');
             }
             echo'</div>';
     		break;
+
     	case 'channels':
-    		$video=get_channel_video($_GET['channelid'],$ptk,APIKEY,GJ_CODE);
+    		$video=get_channel_video($_GET['channelid'],$ptk,APIKEY,GJ_CODE,$maxCount=12);
     		if($video['pageInfo']['totalResults']<=1){
     		    echo'<p>获取内容失败！此频道用户没有上传任何内容，或者频道内容受版权保护,暂时无法查看！</p>';
     		    exit;
@@ -128,6 +135,9 @@ ini_set('error_log', dirname(__FILE__) . '/error_log.txt');
     }
     echo'</div>';
     break;
+
+
+
     	case 'related':
     	 $related=get_related_video($_GET['v'],APIKEY);
     	 
@@ -185,6 +195,22 @@ ini_set('error_log', dirname(__FILE__) . '/error_log.txt');
     echo '</ul>';
       break;
     
+    
+    case 'channeltop':
+	$topd=get_channel_video($_GET['channelid'],$ptk,APIKEY,GJ_CODE,$maxCount=3);
+    echo'<ul class="list-unstyled video-list-thumbs row pt-1">';
+    foreach($topd["items"] as $v) {
+    echo '<li class="col-xs-6 col-sm-6 col-md-4 col-lg-4" ><a href="./watch.php?v='. $v["id"]['videoId'].'" class="hhh" >
+    			<img src="./thumbnail.php?type=mqdefault&vid='.$v["id"]['videoId'].'" class=" img-responsive" /><p class="fa fa-play-circle-o kkk" ></p>
+    			<span class="text-dark text-overflow font2 my-2" title="'.$v["snippet"]["title"].'">'.$v["snippet"]["title"].'</span></a>
+    			<div class="pull-left pull-left1 icontext"><i class="fa fa-user icoys"></i><span class="pl-1"><a href="./channel.php?channelid='.$v["snippet"]["channelId"].'"  class=" icoys" title="'.$v["snippet"]["channelTitle"].'">'.$v["snippet"]["channelTitle"].'</a></span></div>
+    		
+    		<div class="pull-right pull-right1 icontext icoys">
+    		    <i class="fa fa-clock-o pl-1"></i><span class="pl-1">'.format_date($v["snippet"]["publishedAt"]).'</span></div>
+    		<span class="duration">-</span></li>';
+    		}  
+    echo '</ul>';
+      break;
     
       
     case 'DMCA':
