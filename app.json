@@ -3,4 +3,11 @@
   "description": "基于PHP的YouTube代理应用",
   "website": "https://github.com/gfw-breaker/",
   "repository": "https://github.com/gfw-breaker/you2php-heroku"
+  "success_url": "/install.php",
+  "env":{
+      "APIKEY":{
+        "description": "Youtube API V3 KEY",
+        "value": ""
+      }
+  }
 }
