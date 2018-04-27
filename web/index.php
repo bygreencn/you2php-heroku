@@ -119,7 +119,10 @@ if(isset($_GET['v'])){
          <div class="col-md-12 pb-3 d-none d-sm-none d-md-block" style="background: url(http://wx2.sinaimg.cn/large/b0738b0agy1fm4j4ba83wj20t60jh0uf.jpg) no-repeat;background-size: cover;background-position: center -80px;text-align: center;
     "> 
    <h3 class="pt-5 pb-2 text-white">Hello World！</h3>
-	<p class="text-white m-0"><a href="https://github.com/gfw-breaker/you2php-heroku/blob/master/README.md" target="_blank" style="color:white">一键部署免费YouTube代理</a></p>
+	<p class="text-white m-0">
+		<a href="https://github.com/gfw-breaker/heroku-node-proxy#--end--" target="_blank" style="color:white">免费YouTube代理</a> &nbsp;&nbsp;&nbsp;
+		<a href="https://github.com/gfw-breaker/you2php-heroku#--end--" target="_blank" style="color:white">免费通用Web代理</a>
+	</p>
 	<br/>
     <p class="text-white m-0"><a href="https://github.com/gfw-breaker/nogfw/blob/master/README.md" target="_blank" style="color:white">下载一键翻墙软件 - 打破网络封锁，重获网络自由</a></p>
 	<br/>
