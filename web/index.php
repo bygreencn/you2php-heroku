@@ -177,12 +177,23 @@ if(isset($_GET['v'])){
   	</div>
     <div id="videocontent5" class="videocontentrow"></div>
 
+    <div class="row pt-2 pb-2">
+    <div class="col-8 sm-p">
+      <span class="txt2 ricon h5">希望之声国际广播</span>
+    </div>
+    <div class="col-4 text-right sm-p">
+      <a href="./channel.php?channelid=UCPMqbkR35zZV1ysWGXJPW-w" title="更多" target="_blank" class="icontext h6 pl-1 ">更多<i class="fa d-inline fa-lg fa-angle-double-right"></i></a>
+    </div>
+  	</div>
+    <div id="videocontent6" class="videocontentrow"></div>
+
     <script>
 	    $("#videocontent1").load('./ajax/ajax.php?type=channeltop&channelid=UCHOR6YkgiQKBkltdHxIWBwA');
 	    $("#videocontent2").load('./ajax/ajax.php?type=channeltop&channelid=UCtAIPjABiQD3qjlEl1T5VpA');
 	    $("#videocontent3").load('./ajax/ajax.php?type=channeltop&channelid=UC_z8ERuOLTrlAaopY0gxzsA');
 	    $("#videocontent4").load('./ajax/ajax.php?type=channeltop&channelid=UCYSHqbSBDD0X3NC-ze8z5xQ');
 	    $("#videocontent5").load('./ajax/ajax.php?type=channeltop&channelid=UCPMqbkR35zZV1ysWGXJPW-w');
+	    $("#videocontent6").load('./ajax/ajax.php?type=channeltop&channelid=UCCdWF5GML4ai-DVSp0Tgyxg');
     </script>
     
     
