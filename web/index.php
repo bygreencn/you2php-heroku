@@ -120,8 +120,8 @@ if(isset($_GET['v'])){
     "> 
    <h3 class="pt-5 pb-2 text-white">Hello World！</h3>
 	<p class="text-white m-0">
-		<a href="https://github.com/gfw-breaker/heroku-node-proxy#--end--" target="_blank" style="color:white">免费YouTube代理</a> &nbsp;&nbsp;&nbsp;
-		<a href="https://github.com/gfw-breaker/you2php-heroku#--end--" target="_blank" style="color:white">免费通用Web代理</a>
+		<a href="https://github.com/gfw-breaker/heroku-node-proxy#--end--" target="_blank" style="color:white">免费通用Web代理</a> &nbsp;&nbsp;&nbsp;
+		<a href="https://github.com/gfw-breaker/you2php-heroku#--end--" target="_blank" style="color:white">免费YouTube代理</a>
 	</p>
 	<br/>
     <p class="text-white m-0"><a href="https://github.com/gfw-breaker/nogfw/blob/master/README.md" target="_blank" style="color:white">下载一键翻墙软件 - 打破网络封锁，重获网络自由</a></p>
